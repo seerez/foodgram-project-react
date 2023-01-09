@@ -3,6 +3,7 @@ from django.contrib import admin
 from users.models import Subscription, User
 
 
+@admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
@@ -15,6 +16,7 @@ class UserAdmin(admin.ModelAdmin):
     list_filter = ('username', 'email', 'first_name', 'last_name')
 
 
+@admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
@@ -23,7 +25,3 @@ class SubscriptionAdmin(admin.ModelAdmin):
     )
     list_filter = ('user', 'author')
     search_fields = ('user__username', 'user__email')
-
-
-admin.site.register(User, UserAdmin)
-admin.site.register(Subscription, SubscriptionAdmin)

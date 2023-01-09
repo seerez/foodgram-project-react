@@ -1,6 +1,7 @@
 from django.db import transaction
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers, validators
+from rest_framework.exceptions import ValidationError
 
 import users.serializers as users
 from recipes.models import (Favorite, Ingredient, IngredientsInRecipe, Recipe,
@@ -162,12 +163,18 @@ class AddRecipeSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError(
                     'Количество ингредиентов должно быть целым числом'
                 )
-            if name not in unique_ings:
-                unique_ings.append(name)
-            else:
-                raise serializers.ValidationError(
-                    'В рецепте не может быть повторяющихся ингредиентов'
+            ids = [item['id'] for item in ings]
+            if len(ids) != len(set(ids)):
+                raise ValidationError(
+                    'Ингредиенты в рецепте должны быть уникальными!'
                 )
+            unique_ings.append(name)
+            # if name not in unique_ings:
+            #     unique_ings.append(name)
+            # else:
+            #     raise serializers.ValidationError(
+            #         'В рецепте не может быть повторяющихся ингредиентов'
+            #     )
         return data
 
     def validate_cooking_time(self, data):
