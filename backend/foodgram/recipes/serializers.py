@@ -169,12 +169,6 @@ class AddRecipeSerializer(serializers.ModelSerializer):
                     'Ингредиенты в рецепте должны быть уникальными!'
                 )
             unique_ings.append(name)
-            # if name not in unique_ings:
-            #     unique_ings.append(name)
-            # else:
-            #     raise serializers.ValidationError(
-            #         'В рецепте не может быть повторяющихся ингредиентов'
-            #     )
         return data
 
     def validate_cooking_time(self, data):
