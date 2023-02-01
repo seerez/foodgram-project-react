@@ -3,9 +3,9 @@ services:
 
   db:
     image: postgres:13.0-alpine
-    volumes:
+    volumes: 
       - db_data:/var/lib/postgresql/data/
-    env_file:
+    env_file: 
       - ./.env
 
   backend:
@@ -23,7 +23,7 @@ services:
     image: seerez/foodgram-frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
-
+ 
   nginx:
     image: nginx:1.19.3
     ports:
