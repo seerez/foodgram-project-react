@@ -18,7 +18,7 @@ services:
       - db
     env_file:
       - ./.env 
-
+ 
   frontend:
     image: seerez/foodgram-frontend:latest
     volumes:
