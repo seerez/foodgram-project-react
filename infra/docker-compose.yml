@@ -7,7 +7,7 @@ services:
       - db_data:/var/lib/postgresql/data/
     env_file: 
       - ./.env
-
+ 
   backend:
     image: seerez/foodgram-backend:latest
     restart: always
