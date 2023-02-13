@@ -7,7 +7,7 @@ load_dotenv()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = ')*+i_9dxi7nfbd+^z(x_^-!e$ynf3lt92b-apb0m$bgr++gdrw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
