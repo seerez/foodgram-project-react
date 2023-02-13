@@ -124,8 +124,11 @@ docker-compose exec backend python manage.py load_tags
 ```
 
 ### Тестовые пользователи
-Логин: ```admin``` (суперюзер)   
+Логин: ```admin@admin.zz``` (суперюзер)   
 Пароль: ```admin```  
+
+Логин: ```user@mail.ru```    
+Пароль: ```user1234```  
 
 
 ## Пользовательские роли в проекте
