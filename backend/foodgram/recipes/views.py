@@ -79,7 +79,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return self.add_recipe(ShoppingCart, request, pk)
 
     def del_shopping_cart(self, request, pk):
-        recipe = get_object_or_404(Recipe, id=id)
+        recipe = get_object_or_404(Recipe, pk=pk)
         if ShoppingCart.objects.filter(
            user=request.user, recipe=recipe).exists():
             ShoppingCart.objects.filter(
