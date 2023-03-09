@@ -74,19 +74,18 @@ class RecipeViewSet(viewsets.ModelViewSet):
         methods=('post', 'delete'),
         permission_classes=(IsAuthenticated,)
     )
-    def shopping_cart(self, request, pk):
+    def add_shopping_cart(self, request, pk):
         if request.method == 'POST':
             return self.add_recipe(ShoppingCart, request, pk)
-
-    def delete_shopping_cart(self, request, pk):
-        recipe = get_object_or_404(Recipe, pk=pk)
-        if ShoppingCart.objects.filter(
-           user=request.user, recipe=recipe).exists():
-            ShoppingCart.objects.filter(
-                user=request.user, recipe=recipe
-            ).delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        if request.method == 'DELETE':
+            recipe = get_object_or_404(Recipe, pk=pk)
+            if ShoppingCart.objects.filter(
+                    user=request.user, recipe=recipe).exists():
+                ShoppingCart.objects.filter(
+                    user=request.user, recipe=recipe
+                ).delete()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def add_recipe(self, model, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
