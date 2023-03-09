@@ -77,7 +77,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def add_shopping_cart(self, request, pk):
         if request.method == 'POST':
             return self.add_recipe(ShoppingCart, request, pk)
-        if request.method == 'DELETE':
+        else:
             recipe = get_object_or_404(Recipe, pk=pk)
             if ShoppingCart.objects.filter(
                     user=request.user, recipe=recipe).exists():
