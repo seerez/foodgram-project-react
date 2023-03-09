@@ -41,7 +41,7 @@ class Recipe(models.Model):
         help_text='Введите автора'
     )
     image = models.ImageField(
-        upload_to='recipes/',
+        upload_to='/',
         verbose_name='Изображение',
         help_text='Загрузите изображение блюда'
     )
