@@ -74,11 +74,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
         methods=('post', 'delete'),
         permission_classes=(IsAuthenticated,)
     )
-    def add_shopping_cart(self, request, pk):
+    def shopping_cart(self, request, pk):
         if request.method == 'POST':
             return self.add_recipe(ShoppingCart, request, pk)
-        else:
-            return self.delete_recipe(Favorite, request, pk)
 
     def add_recipe(self, model, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
