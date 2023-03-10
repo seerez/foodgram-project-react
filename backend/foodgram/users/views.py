@@ -24,15 +24,23 @@ class SubscribeView(views.APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request, pk):
-        author = get_object_or_404(User, pk=pk)
-        user = self.request.user
+        user = request.user
+        author = get_object_or_404(User, id=id)
+
+        if user == author:
+            return Response({
+                'errors': 'Вы не можете подписываться на самого себя'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        if Subscription.objects.filter(user=user, author=author).exists():
+            return Response({
+                'errors': 'Вы уже подписаны на данного пользователя'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
         follow = Subscription.objects.create(user=user, author=author)
         serializer = SubscribeSerializer(
             follow, context={'request': request}
         )
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def delete(self, request, pk):
         author = get_object_or_404(User, pk=pk)
