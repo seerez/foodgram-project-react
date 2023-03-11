@@ -8,7 +8,7 @@ class User(AbstractUser):
         max_length=254,
         verbose_name='email',
         help_text='Введите адрес электронной почты'
-     )
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
@@ -27,13 +27,13 @@ class Subscription(models.Model):
         on_delete=models.CASCADE,
         related_name='follower',
         verbose_name='Подписчик',
-     )
+    )
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name='following',
         verbose_name='Подписки'
-         )
+    )
 
     class Meta:
         constraints = (
