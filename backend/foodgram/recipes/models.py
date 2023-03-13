@@ -52,7 +52,7 @@ class Recipe(models.Model):
     tags = models.ManyToManyField(
         Tag,
         db_index=True,
-        related_name='recipes',
+        related_name='foodgram/recipes',
         verbose_name='Теги',
         help_text='Выберите теги'
     )
