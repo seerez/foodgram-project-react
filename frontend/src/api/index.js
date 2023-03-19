@@ -183,7 +183,7 @@ class Api {
   }, wasImageUpdated) { // image was changed
     const token = localStorage.getItem('token')
     return fetch(
-      `/api/recipes/${recipe_id}/`,
+      this._url + `/api/recipes/${recipe_id}/`,
       {
         method: 'PATCH',
         headers: {
@@ -388,7 +388,7 @@ class Api {
   downloadFile () {
     const token = localStorage.getItem('token')
     return fetch(
-      `/api/recipes/download_shopping_cart/`,
+        `/api/recipes/download_shopping_cart/`,
       {
         method: 'GET',
         headers: {
