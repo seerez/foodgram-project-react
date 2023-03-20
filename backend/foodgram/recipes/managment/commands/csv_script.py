@@ -25,3 +25,4 @@ class Command(BaseCommand):
                     name=row[0],
                     measurement_unit=row[1]
                 )
+            status.save()
