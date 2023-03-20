@@ -12,11 +12,7 @@ DATA_ROOT = os.path.join(settings.BASE_DIR, 'data')
 class Command(BaseCommand):
 
     def hadle(self, *args, **options):
-        self.import_ingredient('ingredients.csv')
-        """Считывает данные из csv и возвращает список строк таблицы"""
-
-
-    def import_ingredients(self, file):
+        file = ('ingredients.csv')
         file_path = os.path.join(DATA_ROOT, file)
         with open(file_path, newline='', encoding='utf-8') as file:
             reader = csv.reader(file)
@@ -25,3 +21,5 @@ class Command(BaseCommand):
                     name=row[0],
                     measurement_unit=row[1]
                 )
+
+
