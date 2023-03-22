@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from recipes.pagination import CustomPagination
 from users.models import Subscription, User
-from users.serializers import SubscribeSerializer, SubscriptionSerializer
+from users.serializers import SubscriptionSerializer
 
 
 class SubscriptionViewSet(ListAPIView):
