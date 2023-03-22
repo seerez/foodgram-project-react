@@ -17,10 +17,6 @@ class SubscriptionViewSet(ListAPIView):
         user = self.request.user
         return user.follower.all()
 
-
-class SubscribeView(views.APIView):
-    permission_classes = (IsAuthenticated,)
-
     def post(self, request, pk):
         author = get_object_or_404(User, pk=pk)
         user = self.request.user
