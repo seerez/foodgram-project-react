@@ -116,19 +116,16 @@ docker-compose exec backend python manage.py createsuperuser
 ```
 При необходимости наполните базу тестовыми данными из backend/data/:
 ```
-docker-compose exec backend python manage.py load_ingredients
+docker-compose exec backend python manage.py csv_script
 ```
-и
-```
-docker-compose exec backend python manage.py load_tags
-```
+
 
 ### Тестовые пользователи
 Логин: ```admin@admin.zz``` (суперюзер)   
 Пароль: ```admin```  
 
-Логин: ```user@mail.ru```    
-Пароль: ```user1234```  
+Логин: ```1@mail.ru```    
+Пароль: ```12345678!```  
 
 
 ## Пользовательские роли в проекте
