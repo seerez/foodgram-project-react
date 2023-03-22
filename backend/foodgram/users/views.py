@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from recipes.pagination import CustomPagination
 from users.models import Subscription, User
-from users.serializers import SubscriptionSerializer
+from users.serializers import SubscriptionSerializer, SubscribeSerializer
 
 
 class SubscriptionViewSet(ListAPIView):
@@ -26,7 +26,7 @@ class SubcribeView(views.APIView):
         author = get_object_or_404(User, pk=pk)
         user = self.request.user
         data = {'author': author.id, 'user': user.id}
-        serializer = SubscriptionSerializer(
+        serializer = SubscribeSerializer(
             data=data, context={'request': request}
         )
         serializer.is_valid(raise_exception=True)
