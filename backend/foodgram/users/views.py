@@ -11,7 +11,6 @@ from users.serializers import SubscribeSerializer, SubscriptionSerializer
 
 class SubscriptionViewSet(ListAPIView):
     serializer_class = SubscriptionSerializer
-    pagination_class = CustomPagination
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
@@ -20,7 +19,6 @@ class SubscriptionViewSet(ListAPIView):
 
 
 class SubscribeView(views.APIView):
-    pagination_class = CustomPagination
     permission_classes = (IsAuthenticated,)
 
     def post(self, request, pk):
