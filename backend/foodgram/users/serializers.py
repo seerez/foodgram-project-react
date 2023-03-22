@@ -31,33 +31,33 @@ class CurrentUserSerializer(UserSerializer):
         ).exists()
 
 
-# class SubscribeSerializer(serializers.ModelSerializer):
+class SubscribeSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = Subscription
-#         fields = ('user', 'author')
+    class Meta:
+        model = Subscription
+        fields = ('user', 'author')
 
-#     def to_representation(self, instance):
-#         request = self.context.get('request')
-#         context = {'request': request}
-#         serializer = SubscriptionSerializer(
-#             instance,
-#             context=context
-#         )
-#         return serializer.data
+    # def to_representation(self, instance):
+    #     request = self.context.get('request')
+    #     context = {'request': request}
+    #     serializer = SubscriptionSerializer(
+    #         instance,
+    #         context=context
+    #     )
+    #     return serializer.data
 
-#     def validate(self, data):
-#         user = data.get('user')
-#         author = data.get('author')
-#         if user == author:
-#             raise serializers.ValidationError(
-#                 'Нельзя подписаться на самого себя!'
-#             )
-#         if Subscription.objects.filter(user=user, author=author).exists():
-#             raise serializers.ValidationError(
-#                 'Вы уже подписаны на этого пользователя!'
-#             )
-#         return data
+    def validate(self, data):
+        user = data.get('user')
+        author = data.get('author')
+        if user == author:
+            raise serializers.ValidationError(
+                'Нельзя подписаться на самого себя!'
+            )
+        if Subscription.objects.filter(user=user, author=author).exists():
+            raise serializers.ValidationError(
+                'Вы уже подписаны на этого пользователя!'
+            )
+        return data
 
 
 class SubscriptionSerializer(serializers.ModelSerializer):

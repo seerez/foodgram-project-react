@@ -11,11 +11,16 @@ from users.serializers import SubscriptionSerializer
 
 class SubscriptionViewSet(ListAPIView):
     serializer_class = SubscriptionSerializer
+    pagination_claa = CustomPagination
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         user = self.request.user
         return user.follower.all()
+
+
+class SubcribeView(views.APIView):
+    permission_class = (IsAuthenticated,)
 
     def post(self, request, pk):
         author = get_object_or_404(User, pk=pk)
