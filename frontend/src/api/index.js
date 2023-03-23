@@ -183,7 +183,7 @@ class Api {
   }, wasImageUpdated) { // image was changed
     const token = localStorage.getItem('token')
     return fetch(
-      this._url + `/api/recipes/${recipe_id}/`,
+      `/api/recipes/${recipe_id}/`,
       {
         method: 'PATCH',
         headers: {
